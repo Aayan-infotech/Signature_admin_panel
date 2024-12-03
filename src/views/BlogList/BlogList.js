@@ -10,7 +10,7 @@ const BlogList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:9006/api/blog')
+    axios.get('http://44.196.64.110:9006/api/blog')
       .then(response => setBlogs(response.data))
       .catch(error => console.error('Error fetching Blogs:', error));
   }, []);
@@ -21,7 +21,7 @@ const BlogList = () => {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this Blog?')) {
-      axios.delete(`http://localhost:9006/api/blog/${id}`)
+      axios.delete(`http://44.196.64.110:9006/api/blog/${id}`)
         .then(() => setBlogs(Blogs.filter(Blog => Blog._id !== id)))
         .catch(error => console.error('Error deleting Blog:', error));
     }

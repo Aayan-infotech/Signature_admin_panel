@@ -20,7 +20,7 @@ const BlogEditor = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:9006/api/blog/${id}`)
+      axios.get(`http://44.196.64.110:9006/api/blog/${id}`)
         .then(response => {
           const BlogData = response.data;
           setBlog({
@@ -64,7 +64,7 @@ const BlogEditor = () => {
 
     try {
       // Update the existing entry using the specified ID
-      await axios.put(`http://localhost:9006/api/blog/${id}`, formData, {
+      await axios.put(`http://44.196.64.110:9006/api/blog/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       navigate('/Blog-page');

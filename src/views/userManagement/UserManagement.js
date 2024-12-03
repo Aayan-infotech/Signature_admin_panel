@@ -19,7 +19,7 @@ const UserManagement = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:9006/api/user');
+                const response = await fetch('http://44.196.64.110:9006/api/user');
                 const data = await response.json();
 
                 const usersArray = Array.isArray(data.data) ? data.data : [];
