@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CButton, CCard, CCardBody, CCardHeader } from '@coreui/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -13,22 +13,22 @@ const formatDate = (dateString) => {
 
 const BlogEditor = () => {
   const [Blog, setBlog] = useState({ title: '', category: '', content: '', date: '', author: 'Admin', status: 'draft' });
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-//   const id = '674eb3fd58c5c2ec7c19af9d'; // Use the specified ID
+  const [images, setImages] = useState([]);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://44.196.64.110:9006/api/blog/${id}`)
-        .then(response => {
+      axios.get(`http://44.196.64.110:9006/api/blog/getBlog/${id}`)
+        .then((response) => {
           const BlogData = response.data;
           setBlog({
             ...BlogData,
-            date: formatDate(BlogData.date)
+            date: formatDate(BlogData.date),
           });
+          setImages(BlogData.images || []);
         })
-        .catch(error => console.error('Error fetching Blog:', error));
+        .catch((error) => console.error('Error fetching Blog:', error));
     }
   }, [id]);
 
@@ -41,12 +41,8 @@ const BlogEditor = () => {
     setBlog({ ...Blog, content });
   };
 
-  const handleImage1Change = (e) => {
-    setImage1(e.target.files[0]);
-  };
-
-  const handleImage2Change = (e) => {
-    setImage2(e.target.files[0]);
+  const handleImagesChange = (e) => {
+    setImages([...e.target.files]);
   };
 
   const handleSubmit = async (e) => {
@@ -59,23 +55,35 @@ const BlogEditor = () => {
     formData.append('date', Blog.date);
     formData.append('author', Blog.author);
     formData.append('status', Blog.status);
-    if (image1) formData.append('image1', image1);
-    if (image2) formData.append('image2', image2);
+
+    Array.from(images).forEach((image) => {
+      formData.append('images', image);
+    });
 
     try {
-      // Update the existing entry using the specified ID
-      await axios.put(`http://44.196.64.110:9006/api/blog/${id}`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-      navigate('/Blog-page');
+      if (id) {
+        await axios.put(`http://44.196.64.110:9006/api/blog/update/${id}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        window.alert('Blog updated successfully!');
+      } else {
+        await axios.post(`http://44.196.64.110:9006/api/blog/createBlog`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        window.alert('Blog created successfully!');
+      }
+
+      // Navigate after the alert
+      navigate('/Blogeditor');
     } catch (error) {
-      console.error('Error saving Blog:', error);
+      console.error('Error saving Blog:', error.response?.data || error.message);
+      window.alert('Failed to save the blog. Please try again.');
     }
   };
 
   return (
     <CCard>
-      <CCardHeader>Edit Blog</CCardHeader>
+      <CCardHeader>{id ? 'Edit Blog' : 'Create Blog'}</CCardHeader>
       <CCardBody>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -102,18 +110,21 @@ const BlogEditor = () => {
             </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="image1" className="form-label">Image 1</label>
-            <input type="file" id="image1" name="image1" onChange={handleImage1Change} className="form-control" />
+            <label htmlFor="images" className="form-label">Images</label>
+            <input
+              type="file"
+              id="images"
+              name="images"
+              onChange={handleImagesChange}
+              className="form-control"
+              multiple
+            />
           </div>
-          {/* <div className="mb-3">
-            <label htmlFor="image2" className="form-label">Image 2</label>
-            <input type="file" id="image2" name="image2" onChange={handleImage2Change} className="form-control" />
-          </div> */}
           <div className="mb-3">
             <label htmlFor="date" className="form-label">Date</label>
             <input id="date" name="date" type="date" value={Blog.date} onChange={handleChange} className="form-control" />
           </div>
-          <CButton type="submit" color="primary">Save</CButton>
+          <CButton type="submit" color="primary">{id ? 'Update' : 'Save'}</CButton>
         </form>
       </CCardBody>
     </CCard>

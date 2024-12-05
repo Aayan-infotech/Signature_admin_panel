@@ -46,14 +46,14 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Blog',
+    name: 'Blog Management',
     to: '/blog',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   // {
   //   component: CNavItem,
-  //   name: 'Communication & Support',
-  //   to: '/communication&Support',
+  //   name: 'Blog Editor',
+  //   to: '/blogeditor',
   //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   // },
 

@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const OutfitterManagement = React.lazy(() => import('./views/outfitterManagement/OutfitterManagement'))
 const Oversight = React.lazy(() => import('./views/oversight/Oversight'))
@@ -9,6 +8,7 @@ const CommunicationSupport = React.lazy(() => import('./views/communication&Supp
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 const BlogManagement = React.lazy(() => import('./views/BlogList/BlogList'))
+const Blogeditor = React.lazy(() => import('./views/Blogeditor/Blogeditor'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -61,6 +61,8 @@ const routes = [
   { path: '/oversight', name: 'Oversight', element: Oversight },
   { path: '/userManagement', name: 'UserManagement', element: UserManagement },
   { path: '/blog', name: 'BlogManagement', element: BlogManagement },
+  { path: '/blogeditor', name: 'Blogeditor', element: Blogeditor },
+
   { path: '/analytics&Reporting', name: 'Analytics&Reporting', element: AnalyticsReporting },
   { path: '/communication&Support', name: 'Communication&Support', element: CommunicationSupport },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
