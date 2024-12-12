@@ -41,9 +41,9 @@ const AppSidebar = () => {
       <CSidebarHeader className="border-bottom">
         <CSidebarBrand to="/">
           
-          <img className='d-block' src={signature_logo} alt = 'Signature Website' style={{display: 'block', marginLeft: '70px', marginRight: 'auto', width: '80px'}} />
+          <img className='d-block w-100' src={signature_logo} alt = 'Signature Website' style={{display: 'block', marginRight: 'auto',}} />
           {/* <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} /> */}
-          <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
+        
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
