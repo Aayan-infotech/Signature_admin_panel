@@ -12,30 +12,34 @@ import {
 
 const UserManagement = () => {
     const [users, setUsers] = useState([]); 
+    const [loading , setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1); 
     const [usersPerPage] = useState(10); 
 
     // Fetch users from API
     useEffect(() => {
+        setLoading(true);
         const fetchUsers = async () => {
             try {
                 const response = await fetch('http://44.196.64.110:9006/api/user');
                 const data = await response.json();
-
+    
                 const usersArray = Array.isArray(data.data) ? data.data : [];
-                
+    
                 const filteredData = usersArray.map((user) => ({
                     id: user._id,
                     email: user.email,
                     createdAt: user.createdAt,
                 }));
-
-                setUsers(filteredData); 
+    
+                setUsers(filteredData);
             } catch (error) {
                 console.error('Error fetching users:', error);
+            } finally {
+                setLoading(false);
             }
         };
-
+    
         fetchUsers();
     }, []);
 
@@ -51,6 +55,7 @@ const UserManagement = () => {
     const totalPages = Math.ceil(users.length / usersPerPage);
 
     return (
+        <>
         <CCard>
             <CCardHeader>
                 <CRow>
@@ -69,6 +74,12 @@ const UserManagement = () => {
                         </CRow>
                     </CCardText>
                 </CListGroupItem>
+                {loading && <>
+              
+              <div className='text-center py-5 d-flex w-100'>Loading...</div>
+             
+              </>
+              }
                 {currentUsers.map((user, index) => (
                     <CListGroupItem key={user.id}>
                         <CCardText>
@@ -110,6 +121,7 @@ const UserManagement = () => {
                 </CButton>
             </div>
         </CCard>
+        </>
     );
 };
 

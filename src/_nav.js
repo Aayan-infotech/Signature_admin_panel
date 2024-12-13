@@ -54,8 +54,8 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Review Management',
-    to: '/blog',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    to: '/review',
+    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
   // {
   //   component: CNavItem,

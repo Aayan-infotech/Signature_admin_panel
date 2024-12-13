@@ -1,4 +1,5 @@
 import React from 'react'
+import BlogEdit from './views/BlogList/BlogEdit'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const OutfitterManagement = React.lazy(() => import('./views/outfitterManagement/OutfitterManagement'))
 const Oversight = React.lazy(() => import('./views/oversight/Oversight'))
@@ -8,6 +9,7 @@ const CommunicationSupport = React.lazy(() => import('./views/communication&Supp
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 const BlogManagement = React.lazy(() => import('./views/BlogList/BlogList'))
+const reviewManagement = React.lazy(() => import('./views/Review/reviewList'))
 const Blogeditor = React.lazy(() => import('./views/Blogeditor/Blogeditor'))
 
 // Base
@@ -61,8 +63,9 @@ const routes = [
   { path: '/oversight', name: 'Oversight', element: Oversight },
   { path: '/userManagement', name: 'UserManagement', element: UserManagement },
   { path: '/blog', name: 'BlogManagement', element: BlogManagement },
+  { path: '/review', name: 'reviewManagement', element: reviewManagement },
   { path: '/blogeditor', name: 'Blogeditor', element: Blogeditor },
-
+  { path: '/blogedit/:id', name: 'Blogedit', element: BlogEdit },
   { path: '/analytics&Reporting', name: 'Analytics&Reporting', element: AnalyticsReporting },
   { path: '/communication&Support', name: 'Communication&Support', element: CommunicationSupport },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
