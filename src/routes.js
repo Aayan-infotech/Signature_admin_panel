@@ -63,7 +63,7 @@ const routes = [
   { path: '/oversight', name: 'Oversight', element: Oversight },
   { path: '/userManagement', name: 'UserManagement', element: UserManagement },
   { path: '/blog', name: 'BlogManagement', element: BlogManagement },
-  { path: '/review', name: 'reviewManagement', element: reviewManagement },
+  { path: '/review', name: 'feedback', element: reviewManagement },
   { path: '/blogeditor', name: 'Blogeditor', element: Blogeditor },
   { path: '/blogedit/:id', name: 'Blogedit', element: BlogEdit },
   { path: '/analytics&Reporting', name: 'Analytics&Reporting', element: AnalyticsReporting },

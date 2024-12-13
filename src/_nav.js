@@ -53,7 +53,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Review Management',
+    name: 'Feedback Management',
     to: '/review',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
