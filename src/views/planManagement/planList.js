@@ -25,7 +25,7 @@ export default function PlanList() {
 
   const fetchPlans = async () => {
     try {
-      const response = await axios.get('http://localhost:9006/api/plan/getAllPlans')
+      const response = await axios.get('http://44.196.64.110:9006/api/plan/getAllPlans')
       console.log(response)
       if (response.status === 200) {
         setPlans(response?.data)

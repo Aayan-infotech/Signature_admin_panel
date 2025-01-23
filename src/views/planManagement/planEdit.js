@@ -53,8 +53,7 @@ export default function PlanEdit() {
         isMonthly,
         isYearly,
       }
-      await axios.put(`http://localhost:9006/api/plan/updatePlan/${id}`, updatedPlan)
-      alert('Plan updated successfully!')
+      await axios.put(`http://44.196.64.110:9006/api/plan/updatePlan/${id}`, updatedPlan)
       navigate('/plan') // Redirect to the plans list
     } catch (error) {
       console.error('Error updating plan:', error)
