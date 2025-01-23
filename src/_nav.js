@@ -57,12 +57,12 @@ const _nav = [
     to: '/review',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavItem,
-  //   name: 'Blog Editor',
-  //   to: '/blogeditor',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
+  {
+    component: CNavItem,
+    name: 'Plan Management',
+    to: '/plan',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+  },
 
   // {
   //   component: CNavTitle,
