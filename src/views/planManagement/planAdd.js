@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-export default function PlanEdit() {
+export default function PlanAdd() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
@@ -25,34 +25,11 @@ export default function PlanEdit() {
     setPlanFeature(plan === 'basic' ? 'basic' : 'full')
   }
 
-  // Fetch plan data
-  useEffect(() => {
-    if (id) {
-      axios
-        .get(`http://localhost:9006/api/plan/getPlan/${id}`)
-        .then(({ data }) => {
-          console.log(data)
-          setTitle(data.name)
-          setPrice(data.price)
-          setDescription(data.description)
-          setIsMonthly(data.isMonthly)
-          setIsYearly(data.isYearly)
-          setPlanFeature(data.PlanFeature)
-        })
-        .catch((error) => {
-          console.error('Error fetching plan:', error)
-          alert('Failed to fetch plan details. Please try again.')
-        })
-    }
-  }, [id])
-
-  console.log('title', title)
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const updatedPlan = {
+      const addPlan = {
         name: title,
         price,
         description,
@@ -60,7 +37,7 @@ export default function PlanEdit() {
         isYearly,
         PlanFeature
       }
-      await axios.put(`http://localhost:9006/api/plan/updatePlan/${id}`, updatedPlan)
+      await axios.post(`http://localhost:9006/api/plan/createPlan`, addPlan)
       navigate('/plan') // Redirect to the plans list
     } catch (error) {
       console.error('Error updating plan:', error)
@@ -72,7 +49,7 @@ export default function PlanEdit() {
   return (
     <>
       <CCard>
-        <CCardHeader>Edit Plan</CCardHeader>
+        <CCardHeader>Add Plan</CCardHeader>
         <CCardBody>
           <form className="row gy-4" onSubmit={handleSubmit}>
             <div className="col-lg-3">
@@ -139,7 +116,7 @@ export default function PlanEdit() {
               <ReactQuill value={description} onChange={setDescription} />
             </div>
             <CButton type="submit" color="primary">
-              Update
+              Add Plan
             </CButton>
           </form>
         </CCardBody>

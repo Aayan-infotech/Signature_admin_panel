@@ -1,12 +1,19 @@
 import React from 'react'
 import BlogEdit from './views/BlogList/BlogEdit'
 import PlanList from './views/planManagement/planList'
+import PlanAdd from './views/planManagement/planAdd'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const OutfitterManagement = React.lazy(() => import('./views/outfitterManagement/OutfitterManagement'))
+const OutfitterManagement = React.lazy(
+  () => import('./views/outfitterManagement/OutfitterManagement'),
+)
 const Oversight = React.lazy(() => import('./views/oversight/Oversight'))
 const UserManagement = React.lazy(() => import('./views/userManagement/UserManagement'))
-const AnalyticsReporting = React.lazy(() => import('./views/analytics&Reporting/Analytics&Reporting'))
-const CommunicationSupport = React.lazy(() => import('./views/communication&Support/Communication&Support'))
+const AnalyticsReporting = React.lazy(
+  () => import('./views/analytics&Reporting/Analytics&Reporting'),
+)
+const CommunicationSupport = React.lazy(
+  () => import('./views/communication&Support/Communication&Support'),
+)
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 const BlogManagement = React.lazy(() => import('./views/BlogList/BlogList'))
@@ -65,6 +72,7 @@ const routes = [
   { path: '/userManagement', name: 'UserManagement', element: UserManagement },
   { path: '/blog', name: 'BlogManagement', element: BlogManagement },
   { path: '/plan', name: 'PlanManagement', element: PlanList },
+  { path: '/addPlan', name: 'PlanManagement', element: PlanAdd },
   { path: '/plan/:id', name: 'planEdit', element: planEdit },
   { path: '/review', name: 'feedback', element: reviewManagement },
   { path: '/blogeditor', name: 'Blogeditor', element: Blogeditor },
