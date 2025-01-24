@@ -25,7 +25,7 @@ export default function PlanList() {
 
   const fetchPlans = async () => {
     try {
-      const response = await axios.get('http://44.196.64.110:9006/api/plan/getAllPlans')
+      const response = await axios.get('http://localhost:9006/api/plan/getAllPlans')
       console.log(response)
       if (response.status === 200) {
         setPlans(response?.data)
@@ -37,11 +37,23 @@ export default function PlanList() {
 
   const fetchPlansById = async (id) => {
     try {
-      const response = await axios.get(`http://44.196.64.110:9006/api/plan/getPlan/${id}`)
+      const response = await axios.get(`http://localhost:9006/api/plan/getPlan/${id}`)
       console.log(response)
       if (response.status === 200) {
         setPlanModal(response?.data)
         setVisible(true)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deletePlanById = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:9006/api/plan/deletePlan/${id}`)
+      console.log(response)
+      if (response.status === 200) {
+        fetchPlans()
       }
     } catch (error) {
       console.log(error)
@@ -56,12 +68,18 @@ export default function PlanList() {
 
   return (
     <>
+      <div className="d-flex justify-content-end">
+        <Link to="/addPlan">
+          <button className="btn btn-success text-light">Add Plan</button>
+        </Link>
+      </div>
       <CTable hover>
         <CTableHead color="light">
           <CTableRow>
             <CTableHeaderCell scope="col">#</CTableHeaderCell>
             <CTableHeaderCell scope="col">Name</CTableHeaderCell>
             <CTableHeaderCell scope="col">Price</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Plan</CTableHeaderCell>
             <CTableHeaderCell scope="col">Duration</CTableHeaderCell>
             <CTableHeaderCell scope="col">Action</CTableHeaderCell>
           </CTableRow>
@@ -74,6 +92,7 @@ export default function PlanList() {
 
                 <CTableDataCell>{plan.name}</CTableDataCell>
                 <CTableDataCell>{plan.price}</CTableDataCell>
+                <CTableDataCell>{plan.PlanFeature === 'basic' ? 'basic' : 'full'}</CTableDataCell>
                 <CTableDataCell>{plan.isMonthly === true ? '30 days' : '1 year'}</CTableDataCell>
                 <CTableDataCell>
                   <FontAwesomeIcon
@@ -87,6 +106,11 @@ export default function PlanList() {
                       style={{ color: '#f0ad4e', cursor: 'pointer', marginLeft: '10px' }}
                     />
                   </Link>
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    style={{ color: '#bb1616', cursor: 'pointer', marginLeft: '10px' }}
+                    onClick={() => deletePlanById(plan._id)}
+                  />
                 </CTableDataCell>
               </CTableRow>
             </>
