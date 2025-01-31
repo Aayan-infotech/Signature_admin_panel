@@ -129,9 +129,16 @@ export default function PlanList() {
         </CModalHeader>
         <CModalBody>
           <h3>{planModal.name}</h3>
-          <h6>{planModal.price}</h6>
-          <p>{planModal.isMonthly === true ? '30 days' : null}</p>
-          <p>{planModal.isYearly === true ? '1 Year' : null}</p>
+          <h6>
+            <b>Price: </b>${planModal.price}
+          </h6>
+          <p>{planModal.isMonthly === true ? 'Duration: 30 days' : null}</p>
+          <p>{planModal.isYearly === true ? 'Duration: 1 Year' : null}</p>
+          <p>
+            <b>Plan Type:</b>
+            {planModal.PlanFeature === 'full' ? 'full' : 'basic'}
+          </p>
+          <span>Description:</span>
           <div dangerouslySetInnerHTML={{ __html: planModal.description }} />
         </CModalBody>
       </CModal>
