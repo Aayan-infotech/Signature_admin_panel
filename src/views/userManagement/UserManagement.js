@@ -21,7 +21,7 @@ const UserManagement = () => {
     setLoading(true)
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://44.196.64.110:9006/api/user/allUser')
+        const response = await fetch('http://54.236.98.193:9006/api/user/allUser')
         const data = await response.json()
 
         const usersArray = Array.isArray(data.data) ? data.data : []

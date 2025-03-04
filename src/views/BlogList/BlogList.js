@@ -34,7 +34,7 @@ const BlogList = () => {
   useEffect(() => {
     setLoading(true)
     axios
-      .get('http://44.196.64.110:9006/api/blog/getBlog')
+      .get('http://54.236.98.193:9006/api/blog/getBlog')
       .then((response) => {
         console.log('API Response:', response.data) // Debugging API response
         if (Array.isArray(response.data)) {
@@ -58,7 +58,7 @@ const BlogList = () => {
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this Blog?')) {
       axios
-        .delete(`http://44.196.64.110:9006/api/blog/delete/${id}`)
+        .delete(`http://54.236.98.193:9006/api/blog/delete/${id}`)
         .then(() => {
           setBlogs(Blogs.filter((Blog) => Blog._id !== id))
         })

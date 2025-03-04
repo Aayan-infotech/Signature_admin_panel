@@ -37,7 +37,7 @@ export default function PlanAdd() {
         isYearly,
         PlanFeature
       }
-      await axios.post(`http://localhost:9006/api/plan/createPlan`, addPlan)
+      await axios.post(`http://54.236.98.193:9006/api/plan/createPlan`, addPlan)
       navigate('/plan') // Redirect to the plans list
     } catch (error) {
       console.error('Error updating plan:', error)
