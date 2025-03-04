@@ -25,7 +25,7 @@ export default function PlanList() {
 
   const fetchPlans = async () => {
     try {
-      const response = await axios.get('http://localhost:9006/api/plan/getAllPlans')
+      const response = await axios.get('http://54.236.98.193:9006/api/plan/getAllPlans')
       console.log(response)
       if (response.status === 200) {
         setPlans(response?.data)
@@ -37,7 +37,7 @@ export default function PlanList() {
 
   const fetchPlansById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:9006/api/plan/getPlan/${id}`)
+      const response = await axios.get(`http://54.236.98.193:9006/api/plan/getPlan/${id}`)
       console.log(response)
       if (response.status === 200) {
         setPlanModal(response?.data)
@@ -50,7 +50,7 @@ export default function PlanList() {
 
   const deletePlanById = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:9006/api/plan/deletePlan/${id}`)
+      const response = await axios.delete(`http://54.236.98.193:9006/api/plan/deletePlan/${id}`)
       console.log(response)
       if (response.status === 200) {
         fetchPlans()

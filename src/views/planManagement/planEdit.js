@@ -29,7 +29,7 @@ export default function PlanEdit() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:9006/api/plan/getPlan/${id}`)
+        .get(`http://54.236.98.193:9006/api/plan/getPlan/${id}`)
         .then(({ data }) => {
           console.log(data)
           setTitle(data.name)
@@ -60,7 +60,7 @@ export default function PlanEdit() {
         isYearly,
         PlanFeature
       }
-      await axios.put(`http://localhost:9006/api/plan/updatePlan/${id}`, updatedPlan)
+      await axios.put(`http://54.236.98.193:9006/api/plan/updatePlan/${id}`, updatedPlan)
       navigate('/plan') // Redirect to the plans list
     } catch (error) {
       console.error('Error updating plan:', error)

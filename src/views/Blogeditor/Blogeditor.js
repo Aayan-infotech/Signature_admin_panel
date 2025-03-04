@@ -19,7 +19,7 @@ const BlogEditor = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://44.196.64.110:9006/api/blog/getBlog/${id}`)
+      axios.get(`http://54.236.98.193:9006/api/blog/getBlog/${id}`)
         .then((response) => {
           const BlogData = response.data;
           setBlog({
@@ -62,12 +62,12 @@ const BlogEditor = () => {
 
     try {
       if (id) {
-        await axios.put(`http://44.196.64.110:9006/api/blog/update/${id}`, formData, {
+        await axios.put(`http://54.236.98.193:9006/api/blog/update/${id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         window.alert('Blog updated successfully!');
       } else {
-        await axios.post(`http://44.196.64.110:9006/api/blog/createBlog`, formData, {
+        await axios.post(`http://54.236.98.193:9006/api/blog/createBlog`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         window.alert('Blog created successfully!');
