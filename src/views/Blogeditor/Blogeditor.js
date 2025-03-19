@@ -64,16 +64,12 @@ const BlogEditor = () => {
     formData.append('author', Blog.author)
     formData.append('status', Blog.status)
 
-    // Array.from(images).forEach((image) => {
-    //   formData.append('images', image);
-    // })
+    Array.from(images).forEach((image) => {
+      formData.append('images', image);
+    })
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`)
     }
-
-
-
-
     try {
       if (id) {
         await axios.put(`http://3.223.253.106:9006/api/blog/update/${id}`, formData, {
