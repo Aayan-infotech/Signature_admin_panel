@@ -71,6 +71,9 @@ const BlogEditor = () => {
       console.log(`${key}: ${value}`)
     }
 
+
+
+    
     try {
       if (id) {
         await axios.put(`http://3.223.253.106:9006/api/blog/update/${id}`, formData, {
