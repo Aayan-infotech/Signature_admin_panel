@@ -26,7 +26,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://54.236.98.193:9006/api/auth/admin-login-phirse', { email, password });
+      const response = await axios.post('http://3.223.253.106:9006/api/auth/admin-login-phirse', { email, password });
       if (response.status === 200 || response.success === true) {
         const token  = response.data.token;
         localStorage.setItem('authToken', token);

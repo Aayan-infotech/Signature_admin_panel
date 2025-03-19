@@ -26,7 +26,7 @@ const BlogEdit = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://54.236.98.193:9006/api/blog/getBlog/${id}`)
+        .get(`http://3.223.253.106:9006/api/blog/getBlog/${id}`)
         .then(({ data }) => {
           setBlog({ ...data, date: formatDate(data.date) })
           setExistingImages(data.images || [])
@@ -78,12 +78,12 @@ const BlogEdit = () => {
 
     try {
       if (id) {
-        await axios.put(`http://54.236.98.193:9006/api/blog/update/${id}`, formData, {
+        await axios.put(`http://3.223.253.106:9006/api/blog/update/${id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
         alert('Blog updated successfully!')
         // Fetch the updated data
-        const { data } = await axios.get(`http://54.236.98.193:9006/api/blog/getBlog/${id}`)
+        const { data } = await axios.get(`http://3.223.253.106:9006/api/blog/getBlog/${id}`)
         setBlog({ ...data, date: formatDate(data.date) })
         setExistingImages(data.images || [])
         navigate('/blog')
