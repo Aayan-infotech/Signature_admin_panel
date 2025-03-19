@@ -73,7 +73,7 @@ const BlogEditor = () => {
 
 
 
-    
+
     try {
       if (id) {
         await axios.put(`http://3.223.253.106:9006/api/blog/update/${id}`, formData, {
@@ -82,7 +82,7 @@ const BlogEditor = () => {
         window.alert('Blog updated successfully!')
       } else {
         await axios.post(`http://3.223.253.106:9006/api/blog/createBlog`, formData, {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
         window.alert('Blog created successfully!')
       }
