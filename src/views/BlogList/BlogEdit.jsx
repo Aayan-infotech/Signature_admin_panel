@@ -73,7 +73,7 @@ const BlogEdit = () => {
     })
 
     newImages.forEach((image) => {
-      formData.append('images', image) // Append new image files
+      formData.append('files', image) // Append new image files
     })
 
     try {

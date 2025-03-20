@@ -55,7 +55,6 @@ const BlogEditor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     const formData = new FormData()
     formData.append('title', Blog.title)
     formData.append('category', Blog.category)
@@ -67,6 +66,22 @@ const BlogEditor = () => {
     images.forEach((image) => {
       formData.append('files', image) // Append images correctly
     })
+    console.log(Blog)
+    console.log(images)
+
+
+    if (
+      !Blog.title ||
+      !Blog.category ||
+      !Blog.content ||
+      !Blog.date ||
+      !Blog.author ||
+      !Blog.status ||
+      !images
+    ) {
+      window.alert('Please fill all the fields')
+      return
+    }
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`)
     }

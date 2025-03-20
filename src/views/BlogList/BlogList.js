@@ -176,7 +176,7 @@ const BlogList = () => {
                 <strong>Status:</strong> {selectedBlog.status}
               </p>
               <p>
-                <strong>Date:</strong> {new Date(selectedBlog.date).toLocaleDateString()}
+                <strong>Date:</strong> {new Date(selectedBlog?.date).toLocaleDateString()}
               </p>
               <p>
                 <strong>Content:</strong> {selectedBlog.content}
