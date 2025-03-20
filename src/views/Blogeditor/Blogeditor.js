@@ -64,8 +64,8 @@ const BlogEditor = () => {
     formData.append('author', Blog.author)
     formData.append('status', Blog.status)
 
-    Array.from(images).forEach((image) => {
-      formData.append('images', image);
+    images.forEach((image) => {
+      formData.append('images', image) // Append images correctly
     })
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`)
@@ -77,8 +77,8 @@ const BlogEditor = () => {
         })
         window.alert('Blog updated successfully!')
       } else {
-        await axios.post(`http://3.223.253.106:9006/api/blog/createBlog`, formData, {
-          headers: { 'Content-Type': 'application/json' },
+        await axios.post(`http://localhost:9006/api/blog/createBlog`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
         window.alert('Blog created successfully!')
       }
