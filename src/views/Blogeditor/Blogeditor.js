@@ -65,7 +65,7 @@ const BlogEditor = () => {
     formData.append('status', Blog.status)
 
     images.forEach((image) => {
-      formData.append('images', image) // Append images correctly
+      formData.append('files', image) // Append images correctly
     })
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`)
