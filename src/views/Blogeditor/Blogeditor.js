@@ -27,7 +27,7 @@ const BlogEditor = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://3.223.253.106:9006/api/blog/getBlog/${id}`)
+        .get(`https://signatouch.com/api/blog/getBlog/${id}`)
         .then((response) => {
           const BlogData = response.data
           setBlog({
@@ -87,12 +87,12 @@ const BlogEditor = () => {
     }
     try {
       if (id) {
-        await axios.put(`http://3.223.253.106:9006/api/blog/update/${id}`, formData, {
+        await axios.put(`https://signatouch.com/api/blog/update/${id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
         window.alert('Blog updated successfully!')
       } else {
-        await axios.post(`http://3.223.253.106:9006/api/blog/createBlog`, formData, {
+        await axios.post(`https://signatouch.com/api/blog/createBlog`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
         window.alert('Blog created successfully!')

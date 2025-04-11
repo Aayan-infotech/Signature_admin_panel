@@ -26,7 +26,7 @@ const ReviewList = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://3.223.253.106:9006/api/feedback')
+      .get('https://signatouch.com/api/feedback')
       .then((response) => {
         console.log('API Response:', response.data) // Debugging API response
         if (Array.isArray(response?.data)) {
@@ -55,7 +55,7 @@ const ReviewList = () => {
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this Blog?')) {
       axios
-        .delete(` http://3.223.253.106:9006/api/feedback/${id}`)
+        .delete(` https://signatouch.com/api/feedback/${id}`)
         .then(() => {
           setReviews(reviews.filter((Blog) => Blog._id !== id))
         })

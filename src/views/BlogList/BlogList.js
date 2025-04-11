@@ -34,7 +34,7 @@ const BlogList = () => {
   useEffect(() => {
     setLoading(true)
     axios
-      .get('http://3.223.253.106:9006/api/blog/getBlog')
+      .get('https://signatouch.com/api/blog/getBlog')
       .then((response) => {
         console.log('API Response:', response.data) // Debugging API response
         if (Array.isArray(response.data)) {
@@ -58,7 +58,7 @@ const BlogList = () => {
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this Blog?')) {
       axios
-        .delete(`http://3.223.253.106:9006/api/blog/delete/${id}`)
+        .delete(`https://signatouch.com/api/blog/delete/${id}`)
         .then(() => {
           setBlogs(Blogs.filter((Blog) => Blog._id !== id))
         })
@@ -114,11 +114,16 @@ const BlogList = () => {
                         <CTableDataCell>{Blog.status}</CTableDataCell>
                         <CTableDataCell>
                           {Blog.images && (
-                            <img
-                              src={Blog.images[0]}
-                              alt="Blog"
-                              style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                            />
+                           <img
+                           src={Blog.images[0]}
+                           alt="Blog"
+                           style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                           onError={(e) => {
+                             e.target.onerror = null; 
+                             e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'; 
+                           }}
+                         />
+                         
                           )}
                         </CTableDataCell>
                         <CTableDataCell>
